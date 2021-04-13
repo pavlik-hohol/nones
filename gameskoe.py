@@ -18,6 +18,10 @@ def draw_dom(x, y, width, height):
     walls_height = 0.5 * height
     roof_height = height - foundation_house_height - walls_height
 
+    draw_house_foundation(x, y, width, foundation_house_height)
+    draw_house_walls(x, y - foundation_house_height, walls_width, walls_height)
+    draw_house_roof(x, y - foundation_house_height - walls_height, roof_height, width)
+
 
 
 
