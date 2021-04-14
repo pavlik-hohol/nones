@@ -1,5 +1,5 @@
 import pygame
-LIGHT_BLUE = (64, 128, 255)
+LIGHT_BLUE = (50, 150, 0)
 pygame.init()
 FPS = 30
 sc = pygame.display.set_mode((850, 850))
@@ -14,17 +14,11 @@ def builder_rec(a, b, c, d):
     :param d: height для объекта
     :return None
     """
-    pygame.draw.rect(sc, (LIGHT_BLUE), (a, b, c, d), e)
+    pygame.draw.rect(sc, LIGHT_BLUE, (a, b, c, d), e)
 
 
 def builder_lin(a, b, c, d):
-    pygame.draw.line(sc, (LIGHT_BLUE),
-                     [a, b],
-                     [c, d], e)
-
-
-def builder_lin_inert(c, d, a, b):
-    pygame.draw.line(sc, (LIGHT_BLUE),
+    pygame.draw.line(sc, LIGHT_BLUE,
                      [a, b],
                      [c, d], e)
 
@@ -32,27 +26,17 @@ def builder_lin_inert(c, d, a, b):
 def main():
 
     x, y = 300, 200
-    width, height = 50, 75
+    width, height = 500, 150
     foundation_house_height = 0.05 * height
     walls_width = 0.9 * width
     walls_height = 0.5 * height
-    roof_height = height - foundation_house_height - walls_height - walls_width/2
-    draw_dom(x, y, width, height)
+    roof_height = height - foundation_house_height - walls_height
     draw_house_foundation(x - width/2, y + walls_height, width, foundation_house_height)
     draw_house_walls(x - walls_width/2, y, walls_width, walls_height)
+    draw_house_roof(x - width/2, y + roof_height/20, x, y - roof_height/2)
+    draw_house_roof2(x + width/2, y + roof_height/20, x, y - roof_height/2)
 
     pygame.display.update()
-
-
-def draw_dom(x, y, width, height):
-    """Рисует домик в опорной точке (х,у) с высотой height и шириной width,
-    :param x: кординота середины домика,
-    :param y: кордината низа фундамента,
-    :param width: ширена домика между краёв,
-    :param height: высота до крайней точки домика,
-    :return :None.
-    """
-    print("рисую домик ..", x, y, width, height)
 
 
 def draw_house_foundation(x, y, width, height):
@@ -70,7 +54,7 @@ def draw_house_foundation(x, y, width, height):
 
 def draw_house_walls(x, y, width, height):
 
-    """Рисует в house_walls опорной точке (х,у) с высотой walls_height и шириной walls_width,
+    """Рисует house_walls в опорной точке (х,у) с высотой walls_height и шириной walls_width,
         :param x: кординота середины house_walls,
         :param y: кордината низа house_walls,
         :param width: ширена walls до краёв,
@@ -83,15 +67,30 @@ def draw_house_walls(x, y, width, height):
     pass
 
 
-def draw_house_roof(x, y, width, height):
+def draw_house_roof(x, y, x1, y1):
     """Рисует в  house_roof опорной точке (х,у) с высотой height и шириной width,
-            :param x: кординота середины house_roof,
-            :param y: кордината низа house_roof,
-            :param height: длинна house_roof,
-            :param width: ширена house_roof до краёв,
+            :param x: кординота х начала house_roof,
+            :param y: кордината у конца house_roof,
+            :param x1: кординота x начала house_roof,
+            :param y1: кординота у конца house_roof,
             :return :None.
         """
-    print("рисую крышу ..", x, y, width, height)
+    print("рисую крышу ..", x, y, x1, y1)
+    builder_lin(x, y, x1, y1)
+
+    pass
+
+
+def draw_house_roof2(x, y, x1, y1):
+    """Рисует в  house_roof опорной точке (х,у) с высотой height и шириной width,
+                :param x: кординота х начала house_roof,
+                :param y: кордината у конца house_roof,
+                :param x1: кординота x начала house_roof,
+                :param y1: кординота у конца house_roof,
+                :return :None.
+            """
+    print("рисую крышу ..", x, y, x1, y1)
+    builder_lin(x, y, x1, y1)
 
     pass
 
