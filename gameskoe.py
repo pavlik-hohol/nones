@@ -1,9 +1,13 @@
 import pygame
-LIGHT_BLUE = (50, 150, 0)
+
+LIGHT_BLUE = (55, 255, 55)
 pygame.init()
+print("Введите размер домика(ширена, высота)")
+xin = int(input())
+yin = int(input())
 FPS = 30
 sc = pygame.display.set_mode((850, 850))
-e = 5
+e = 7
 
 
 def builder_rec(a, b, c, d):
@@ -23,10 +27,15 @@ def builder_lin(a, b, c, d):
                      [c, d], e)
 
 
-def main():
+def main(x, y, width, height):
+    """Рисует домик в опорной точке (х,у) с шириной width и высотой height,
+        :param x: кординота х дома,
+        :param y: кордината у дома,
+        :param width: ширена дома до краёв,
+        :param height: высота дома,
+        :return :None.
+     """
 
-    x, y = 300, 200
-    width, height = 500, 150
     foundation_house_height = 0.05 * height
     walls_width = 0.9 * width
     walls_height = 0.5 * height
@@ -35,7 +44,6 @@ def main():
     draw_house_walls(x - walls_width/2, y, walls_width, walls_height)
     draw_house_roof(x - width/2, y + roof_height/20, x, y - roof_height/2)
     draw_house_roof2(x + width/2, y + roof_height/20, x, y - roof_height/2)
-
     pygame.display.update()
 
 
@@ -95,7 +103,7 @@ def draw_house_roof2(x, y, x1, y1):
     pass
 
 
-main()
+main(425, 350, xin, yin)
 
 clock = pygame.time.Clock()
 
