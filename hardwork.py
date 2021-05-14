@@ -2,10 +2,13 @@ import pygame
 from pygame.draw import *
 from random import randint
 pygame.init()
+posx = 750
+posy = 750
 
 FPS = 1
-scr = pygame.display.set_mode((750, 750))
+scr = pygame.display.set_mode((posx, posy))
 
+WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
@@ -18,15 +21,14 @@ COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
 def new_ball():
     """рисует новый шар"""
-    global x, y, r
-    x = randint(100, 750)
-    y = randint(100, 750)
+    global x, y, r, color
+    x = randint(100, posx-100)
+    y = randint(100, posy-100)
     r = randint(10, 100)
     color = COLORS[randint(0, 5)]
     circle(scr, color, (x, y), r)
 
 
-pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
 results = 0
