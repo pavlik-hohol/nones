@@ -1,11 +1,12 @@
 import pygame
 from pygame.draw import *
 from random import randint
+
 pygame.init()
 posx = 750
 posy = 750
 
-FPS = 1
+FPS = 75
 scr = pygame.display.set_mode((posx, posy))
 
 WHITE = (255, 255, 255)
@@ -18,16 +19,10 @@ CYAN = (0, 255, 255)
 BLACK = (0, 0, 0)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
-
-def new_ball():
-    """рисует новый шар"""
-    global x, y, r, color
-    x = randint(100, posx-100)
-    y = randint(100, posy-100)
-    r = randint(10, 100)
-    color = COLORS[randint(0, 5)]
-    circle(scr, color, (x, y), r)
-
+x = randint(0, posx)
+y = randint(0, posy)
+r = 20
+color = COLORS[randint(0, 5)]
 
 clock = pygame.time.Clock()
 finished = False
@@ -37,18 +32,18 @@ while not finished:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             finished = True
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            pos1, pos2 = pygame.mouse.get_pos()
-            if (pos1 >= x - r) and (pos1 <= x + r) and (pos2 >= y - r) and (pos2 <= y + r):
-                results += 1
-                print(results)
-                if results >= 50:
-                    FPS = 2
-                elif results == 30:
-                    print("Через 20 очков скорость поднимится в два раза")
-                    pygame.time.wait(200)
-    new_ball()
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_UP]:
+            y -= 20
+        elif keys[pygame.K_DOWN]:
+            y += 20
+        elif keys[pygame.K_LEFT]:
+            x -= 20
+        elif keys[pygame.K_RIGHT]:
+            x += 20
     pygame.display.update()
     scr.fill(BLACK)
+    circle(scr, color, (x, y,), r)
 
 pygame.quit()
