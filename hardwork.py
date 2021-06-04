@@ -30,15 +30,19 @@ results = 0
 while not finished:
     clock.tick(FPS)
     for event in pygame.event.get():
+        keys = pygame.KEYDOWN
         if event.type == pygame.QUIT:
             finished = True
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 event.pos1 = event.pos[0]
                 event.pos2 = event.pos[1]
-                if event.pos1 >= x - r and event.pos1 <= x + r and event.pos2 >= y - r and event.pos2 <= y + r and event.pos1 >= x1 - r and event.pos1 <= x1 + r and event.pos2 >= y1 - r and event.pos2 <= y1 + r:
-                    print("results")
-                    results += 1
+                if x - r <= event.pos1 <= x + r and y - r <= event.pos2 <= y + r and x1 - r <= event.pos1 <= x1 + r and y1 - r <= event.pos2 <= y1 + r:
+                    pass
+                else:
+                    continue
+                print("results")
+                results += 1
         if x < posx and y < posy:
             x += 5
             y += 5

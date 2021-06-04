@@ -7,7 +7,7 @@ xin = int(input())
 yin = int(input())
 FPS = 30
 sc = pygame.display.set_mode((850, 850))
-e = 7
+e = 10
 
 
 def builder_rec(a, b, c, d):
